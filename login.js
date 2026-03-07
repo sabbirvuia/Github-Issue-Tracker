@@ -1,10 +1,12 @@
 const username = document.getElementById("username");
 const password = document.getElementById("password");
- console.log(username.value, password.value)
 
-document.getElementById("btn-login").addEventListener('click', () =>{
-    console.log(username, password)
-    if(username === "admin" && password === "admin123"){
-    window.location.href = "index.html"
-}
-})
+document.getElementById("btn-login").addEventListener("click", () => {
+
+    if (username.value === "admin" && password.value === "admin123") {
+        window.location.href = "./index.html";
+    } else {
+        alert("Invalid username or password");
+    }
+
+});
