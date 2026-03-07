@@ -1,11 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIT</title>
-</head>
-<body>
-    <h1 class="text-6xl">This is home page</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github-Issue-Tracker</title>
+    <!-- tailwind link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="navbar bg-base-100 shadow-sm">
+          <div class="flex-1">
+            <a class="btn btn-ghost text-sm md:text-lg lg:text-2xl"
+              ><img
+                width="36px"
+                height="37px"
+                src="./assets/github-logo.png"
+                alt=""
+              />
+              GitHub Issues Tracker</a
+            >
+          </div>
+          <div class="flex gap-2">
+            <label class="input">
+              <svg
+                class="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input
+                id="ipt-search"
+                type="search"
+                class="input input-bordered w-24 md:w-auto"
+                required
+                placeholder="Search"
+              />
+            </label>
+            <button id="btn-search" class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section
+      id="tab-section"
+      class="w-10/12 mx-auto bg-white p-8 mt-15 rounded-lg flex gap-3"
+    >
+      <button id="btn-all"
+        class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+      >
+        All
+      </button>
+      <button id="btn-open"
+        class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+      >
+        Open
+      </button>
+      <button id="btn-close"
+        class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+      >
+        Closed
+      </button>
+    </section>
+
+    <section>
+      <div id="issues-bar" class="flex justify-between w-10/12 mx-auto bg-white p-8 mt-15 rounded-lg border-b-2 border-gray-300">
+        <div class="flex justify-center items-center gap-3 ">
+            <div class="bg-[#ECE4FF] rounded-full h-15 w-15 flex justify-center items-center" >
+               <img width="32px" height="32px" src="./assets/Aperture.png" alt="" />
+            </div>
+          <div class="items-center">
+            <h2  class="tittle"><span id="issue-count">0</span> Issues</h2>
+            <p class="subtittle text-nowrap">Track and manage your project issues</p>
+          </div>
+        </div>
+        <div class="flex justify-center gap-3">
+             <div class="flex items-center justify-center gap-2 text-center">
+          <div class="inline-grid pb-1 *:[grid-area:1/1]">
+            <div class="status bg-[#00A96E] animate-ping"></div>
+            <div class="status bg-[#00A96E]"></div>
+          </div>
+          <p>Open</p>
+             </div>
+             <div class="flex items-center justify-center gap-2 text-center">
+          <div class="inline-grid pb-1 *:[grid-area:1/1]">
+            <div class="status bg-[#A855F7] animate-ping"></div>
+            <div class="status bg-[#A855F7]"></div>
+          </div>
+          <p>Closed</p>
+             </div>
+        </div>
+       
+      </div>
+
+      <div id="issues-container"></div>
+    </section>
+  </body>
 </html>
