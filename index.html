@@ -23,7 +23,7 @@
       class="max-w-lg mx-auto bg-white shadow-sm max-h-full rounded-md my-16"
     >
       <div class="p-8">
-        <div class="grid grid-cols-1 text-center ">
+        <div class="grid grid-cols-1 text-center">
           <div class="flex justify-center">
             <img src="./assets/github-logo.png" alt="" />
           </div>
@@ -34,9 +34,9 @@
           <p class="subtittle">Sign in to manage your issues</p>
         </div>
 
-        <div class="flex flex-col justify-center mt-8" >
-            <label class="font-medium mb-2 ">Username</label>
-          <label class="input validator mb-6 w-full">
+        <div class="flex flex-col justify-center mt-8">
+          <label class="font-medium mb-2">Username</label>
+          <label class="input validator mb-6 w-full outline-none">
             <svg
               class="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -58,10 +58,10 @@
               type="text"
               required
               placeholder="Enter Username"
-         />
+            />
           </label>
-            <label class="font-medium mb-2 ">Password</label>
-          <label class="input validator w-full">
+          <label class="font-medium mb-2">Password</label>
+          <label class="input validator w-full outline-none">
             <svg
               class="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -89,14 +89,15 @@
           </label>
           <button id="btn-login" class="btn btn-primary my-8">Sign In</button>
         </div>
-        <div class="flex flex-col justify-center text-center space-y-5">
-                <p>----------------------- or -----------------------</p>
-                <P>Demo Credentials:</P>
+        <div class="flex items-center my-4">
+          <div class="x border-t border-gray-400 flex-grow "></div>
+          <span class="mx-2 text-gray-700">Or</span>
+          <div class="border-t border-gray-400 flex-grow "></div>
         </div>
-        <div class="bg-gray-200 py-3 px-5 text-center">
-            <P><span class="text-base font-medium">Username:</span> admin</P>
-            <P><span class="text-base font-medium">Password:</span> admin123</P>
-
+        <P class="inline-block justify-center">Demo Credentials:</P>
+        <div class="bg-gray-300 py-3 px-5 text-center rounded-md">
+          <p><span class="text-base font-medium">Username:</span> admin</p>
+          <p><span class="text-base font-medium">Password:</span> admin123</p>
         </div>
       </div>
     </section>
