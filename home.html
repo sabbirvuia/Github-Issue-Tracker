@@ -76,7 +76,13 @@
                 placeholder="Search issues..."
               />
             </label>
-            <button onclick="loadSearchIssues()" id="btn-search" class="btn btn-primary">Search</button>
+            <button
+              onclick="loadSearchIssues()"
+              id="btn-search"
+              class="btn btn-primary"
+            >
+              Search
+            </button>
           </div>
         </div>
       </nav>
@@ -86,34 +92,44 @@
       id="tab-section"
       class="w-10/12 mx-auto bg-white p-4 mt-10 rounded-lg flex justify-between items-center gap-3 shadow-md md:mt-15 md:p-8"
     >
-    <div class="flex gap-4">
-            <button
-        id="btn-all"
-         onclick="showfilterIssues('all'); activeBtn('btn-all')"
-        class="btn btn-xs rounded-md btn-md md:btn-md lg:btn-lg xl:btn-xl btn-primary"
+      <div class="flex gap-4">
+        <button
+          id="btn-all"
+          onclick="
+            showfilterIssues('all');
+            activeBtn('btn-all');
+          "
+          class="btn btn-xs rounded-md btn-md md:btn-md lg:btn-lg xl:btn-xl btn-primary"
+        >
+          All
+        </button>
+        <button
+          id="btn-open"
+          onclick="
+            showfilterIssues('open');
+            activeBtn('btn-open');
+          "
+          class="btn btn-xs rounded-md btn-md md:btn-md lg:btn-lg xl:btn-xl"
+        >
+          Open
+        </button>
+        <button
+          id="btn-close"
+          onclick="
+            showfilterIssues('closed');
+            activeBtn('btn-close');
+          "
+          class="btn btn-xs rounded-md btn-md md:btn-md lg:btn-lg xl:btn-xl"
+        >
+          Closed
+        </button>
+      </div>
+      <div
+        class="text-base font-semibold badge badge-soft bg-[#def6fc] text-[#007fa9] border-[#bbe5f7] p-3 py-4"
       >
-        All
-      </button>
-      <button
-        id="btn-open"
-        onclick="showfilterIssues('open'); activeBtn('btn-open')"
-        class="btn btn-xs rounded-md btn-md md:btn-md lg:btn-lg xl:btn-xl"
-      >
-        Open
-      </button>
-      <button
-        id="btn-close"
-        onclick="showfilterIssues('closed'); activeBtn('btn-close')"
-        class="btn btn-xs rounded-md btn-md md:btn-md lg:btn-lg xl:btn-xl"
-      >
-        Closed
-      </button>
-    </div>
-    <div class="text-base font-semibold badge badge-soft bg-[#def6fc] text-[#007fa9] border-[#bbe5f7] p-3 py-4">
-      <i class="fa-solid fa-clock"></i>
-      <span id="clock">00:00:00</span>
-    </div>
-
+        <i class="fa-solid fa-clock"></i>
+        <span id="clock">00:00:00</span>
+      </div>
     </section>
 
     <section>
@@ -157,20 +173,35 @@
         </div>
       </div>
 
-      <div id="spinner" class="justify-center text-center col-span-4 mt-5 hidden">
-          <span
-            class="loading loading-bars loading-xl bg-gradient-to-r from-[#0e00d3] via-[#00A96E] to-[#a855f7]"
-          ></span>
-        </div>
+      <div
+        id="spinner"
+        class="justify-center text-center col-span-4 mt-5 hidden"
+      >
+        <span
+          class="loading loading-bars loading-xl bg-gradient-to-r from-[#0e00d3] via-[#00A96E] to-[#a855f7]"
+        ></span>
+      </div>
 
       <div
         id="issues-container"
         class="w-10/12 mx-auto bg-base-200 grid grid-cols-1 gap-3 shadow-md h-full p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      >
-
-
-      </div>
+      ></div>
     </section>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="modal.showModal()">open modal</button> -->
+    <dialog id="modal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">Hello!</h3>
+        <p class="py-4">Press ESC key or click the button below to close</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn btn-primary">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
 
     <script src="./home.js"></script>
   </body>

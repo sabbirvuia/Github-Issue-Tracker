@@ -4,11 +4,10 @@ const issueCount = document.getElementById("issue-count");
 let alldatas = [];
 const btnIds = ["btn-all", "btn-open", "btn-close"];
 
-
-
 const loadIssues = async () => {
   spinnerTime(true);
-  const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
   alldatas = data.data;
@@ -152,18 +151,24 @@ const loadSearchIssues = async () => {
     loadIssues();
     return;
   }
-   spinnerTime(true);
-  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue.trim()}`,);
+  spinnerTime(true);
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue.trim()}`,
+  );
   const allDatas = await res.json();
-  const searchResult = allDatas.data
+  const searchResult = allDatas.data;
 
-  alldatas = searchResult
+  alldatas = searchResult;
   showAllIssuCard(alldatas);
-   issueCount.innerText = alldatas.length;
-   spinnerTime(false);
+  issueCount.innerText = alldatas.length;
+  spinnerTime(false);
 };
 
 loadIssues();
+
+
+
+
 
 const activeBtn = (id) => {
   btnIds.forEach((btn) => {
@@ -186,36 +191,5 @@ function showTime() {
   clock.innerText = ` ${hours}:${minutes}:${seconds}`;
 }
 
-// প্রতি 1 সেকেন্ডে update করতে চাইলে
+// update per second
 setInterval(showTime, 1000);
-
-// shot form need for chatGPT learning perpose
-// Short Summary (বাংলা):
-
-// showfilterIssues(status) ফাংশনটি issue গুলোকে status অনুযায়ী filter করে UI তে দেখায় এবং count update করে।
-
-// কী কী হচ্ছে:
-
-// 1️⃣ যদি status === "all" হয়
-// → সব alldatas দেখাবে।
-
-// 2️⃣ না হলে
-// → filter() ব্যবহার করে সেই status (open / close) এর issue গুলো বের করে।
-
-// 3️⃣ filtered.length দিয়ে issue count update করে।
-
-// 4️⃣ showAllIssuCard(filtered) দিয়ে filtered issue গুলো UI তে display করে।
-
-// ✅ সংক্ষেপে:
-// status অনুযায়ী issue filter → count update → UI তে show।
-
-// const showfilterIssues = (status) => {
-
-//     const filtered =
-//         status === "all"
-//         ? alldatas
-//         : alldatas.filter(data => data.status === status);
-
-//     issueCount.innerText = filtered.length;
-//     showAllIssuCard(filtered);
-// };
