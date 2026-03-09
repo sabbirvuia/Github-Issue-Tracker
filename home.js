@@ -140,12 +140,21 @@ const showfilterIssues = (status) => {
     const filterOfOpen = alldatas.filter((data) => data.status === "open");
     issueCount.innerText = filterOfOpen.length;
 
+    spinnerTime(true);
+    setTimeout(()=>{
+      spinnerTime(false);
     showAllIssuCard(filterOfOpen);
+    }, 500)
+  
   } else {
     const filterOfClose = alldatas.filter((data) => data.status === "closed");
     issueCount.innerText = filterOfClose.length;
 
+      spinnerTime(true);
+    setTimeout(()=>{
+      spinnerTime(false);
     showAllIssuCard(filterOfClose);
+    }, 500)
   }
 };
 
@@ -184,8 +193,10 @@ const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id
 const object = await res.json();
 const datas = object.data;
   showModalCard(datas)
-  spinnerTimeForModal(false);
+ setTimeout(()=>{
+    spinnerTimeForModal(false);
   modal.showModal();
+ }, 800)
 };
 
 const showModalCard = (data) => {
@@ -274,7 +285,6 @@ function showTime() {
 
   clock.innerText = ` ${hours}:${minutes}:${seconds}`;
 }
-
 // update per second
 setInterval(showTime, 1000);
 
