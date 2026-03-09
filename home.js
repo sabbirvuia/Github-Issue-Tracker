@@ -71,7 +71,7 @@ const showAllIssuCard = (datas) => {
     const div = document.createElement("div");
     div.innerHTML = `
 
-        <div  class="box-border w-[100%] h-full bg-base-100 rounded-lg border-t-4 ${status == "open" ? "border-[#00A96E]" : "border-[#a855f7]"} ">
+        <div onclick="showModal(${id})"  class="box-border w-[100%] h-full bg-base-100 rounded-lg border-t-4 ${status == "open" ? "border-[#00A96E]" : "border-[#a855f7]"} ">
           <div class="space-y-3 p-4  border-b-2 border-base-300">
              <div class="flex justify-between"> 
                 ${
@@ -93,7 +93,7 @@ const showAllIssuCard = (datas) => {
              </div>
              <div class="space-y-3 ">
               <h2 class="text-lg font-semibold">${title}</h2>
-              <p class="text-sm font-extralight space-y-0">${description}</p>
+              <p >${description}</p>
               <div class="flex gap-1 space-y-1 flex-wrap">
                 ${showIssuesLabels(labels)}
               </div>
@@ -118,6 +118,7 @@ const showAllIssuCard = (datas) => {
 
     issuesContainer.append(div);
   });
+showIssuesNotFoundMassage()
 };
 
 const showfilterIssues = (status) => {
@@ -145,13 +146,14 @@ const loadSearchIssues = async () => {
     const getBtn = document.getElementById(btn);
     getBtn.classList.remove("btn-primary");
   });
-
+// search value when emtey 
   if (searchValue.trim() === "") {
     document.getElementById("btn-all").classList.add("btn-primary");
     loadIssues();
     return;
   }
   spinnerTime(true);
+
   const res = await fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue.trim()}`,
   );
@@ -164,11 +166,42 @@ const loadSearchIssues = async () => {
   spinnerTime(false);
 };
 
-loadIssues();
 
 
+const showModal = (id) =>{
+    // console.log(id);
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+        .then (res => res.json())
+         .then (object => showModalCard(object.data) )
+}
 
+const showModalCard = (data) =>{
+  // console.log(data)
+    const id = data.id;
+    const title = data.title;
+    const description = data.description;
+    const status = data.status;
+    const labels = data.labels;
+    const priority = data.priority;
+    const author = data.author;
+    const assignee = data.assignee;
+    const createdAt = data.createdAt;
+    const updatedAt = data.updatedAt;
 
+    const modal = document.getElementById("modal")
+    
+    const modalContainer = document.getElementById("modal-container");
+    modalContainer.innerHTML = "";
+
+    const createElement = document.createElement('div') 
+          createElement.innerHTML =`
+          
+          loadding${id}
+          
+          `;
+    modalContainer.append(createElement)
+    modal.showModal();
+}
 
 const activeBtn = (id) => {
   btnIds.forEach((btn) => {
@@ -179,6 +212,15 @@ const activeBtn = (id) => {
   const getBtn = document.getElementById(id);
   getBtn.classList.add("btn-primary");
 };
+
+const showIssuesNotFoundMassage = ()=> {
+  if (alldatas.length == 0){
+    issuesContainer.innerHTML = `
+    <p class="text-lg font-light text-error col-span-4 text-center">NO ISSUES FOUND! </p>
+    `
+  } 
+}
+
 
 const clock = document.getElementById("clock");
 
@@ -193,3 +235,5 @@ function showTime() {
 
 // update per second
 setInterval(showTime, 1000);
+
+loadIssues();

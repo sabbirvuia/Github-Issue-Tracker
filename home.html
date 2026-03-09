@@ -175,25 +175,28 @@
 
       <div
         id="spinner"
-        class="justify-center text-center col-span-4 mt-5 hidden"
+        class="justify-center text-center col-span-4 mt-5 "
       >
+      <p class="subtittle text-info inline-block"> Issues loading.... </p>
         <span
-          class="loading loading-bars loading-xl bg-gradient-to-r from-[#0e00d3] via-[#00A96E] to-[#a855f7]"
+          class="loading loading-dot inline-block loading-sm text-info"
         ></span>
       </div>
 
       <div
         id="issues-container"
         class="w-10/12 mx-auto bg-base-200 grid grid-cols-1 gap-3 shadow-md h-full p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      ></div>
+      >      
+      </div>
     </section>
 
     <!-- Open the modal using ID.showModal() method -->
-    <!-- <button class="btn" onclick="modal.showModal()">open modal</button> -->
+    <button class="btn" onclick="modal.showModal()">open modal</button>
     <dialog id="modal" class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
-        <h3 class="text-lg font-bold">Hello!</h3>
-        <p class="py-4">Press ESC key or click the button below to close</p>
+        <div id="modal-container">
+          
+        </div>
         <div class="modal-action">
           <form method="dialog">
             <!-- if there is a button in form, it will close the modal -->
