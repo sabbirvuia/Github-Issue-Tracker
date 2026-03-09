@@ -71,7 +71,7 @@
               <input
                 id="ipt-search"
                 type="search"
-                class="input outline-none w-24 md:w-auto"
+                class="input outline-none w-full md:w-auto"
                 required
                 placeholder="Search issues..."
               />
@@ -125,7 +125,7 @@
         </button>
       </div>
       <div
-        class="text-base font-semibold badge badge-soft bg-[#def6fc] text-[#007fa9] border-[#bbe5f7] p-3 py-4"
+        class="text-xs font-semibold badge badge-soft hidden  bg-[#def6fc] text-[#007fa9] border-[#bbe5f7]  md:text-base p-3 py-4 sm:flex "
       >
         <i class="fa-solid fa-clock"></i>
         <span id="clock">00:00:00</span>
@@ -133,8 +133,7 @@
     </section>
 
     <section>
-      <div
-        id="issues-bar"
+      <div id="issues-bar"
         class="flex flex-col gap-5 justify-between w-10/12 mx-auto bg-white p-8 mt-2 rounded-lg border-b-2 border-gray-300 shadow-md md:flex-row mt-15"
       >
         <div class="flex justify-center items-center gap-3">
@@ -173,8 +172,7 @@
         </div>
       </div>
 
-      <div
-        id="spinner"
+      <div id="spinner"
         class="justify-center text-center col-span-4 mt-5 hidden"
       >
       <p class="subtittle text-info inline-block"> Issues loading.... </p>
@@ -182,8 +180,8 @@
           class="loading loading-dot inline-block loading-sm text-info"
         ></span>
       </div>
-      <div
-        id="spinner-of-modal"
+
+      <div id="spinner-of-modal"
         class="justify-center text-center col-span-4 mt-5 hidden"
       >
       <p class="subtittle text-info inline-block"> Issue details loading.... </p>
@@ -192,12 +190,12 @@
         ></span>
       </div>
 
-      <div
-        id="issues-container"
+      <div id="issues-container"
         class="w-10/12 mx-auto bg-base-200 grid grid-cols-1 gap-3 shadow-md h-full p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >      
       </div>
     </section>
+
     <dialog id="modal" class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
         <div id="modal-container">

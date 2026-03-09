@@ -4,6 +4,7 @@ const issueCount = document.getElementById("issue-count");
 let alldatas = [];
 const btnIds = ["btn-all", "btn-open", "btn-close"];
 
+
 const loadIssues = async () => {
   spinnerTime(true);
   const res = await fetch(
@@ -30,9 +31,13 @@ const showIssuesLabels = (labels) => {
     } else if (x == "enhancement") {
       return `<div class="badge badge-soft p-2 bg-[#DEFCE8] text-[#00A96E] border-[#BBF7D0] text-xs"><i class="fa-solid fa-ranking-star"></i>
             ENHANCEMENT</div>`;
-    } else {
+    } 
+    else if (x == "good first issue") {
       return `<div class="badge badge-soft p-2 bg-[#def6fc] text-[#007fa9] border-[#bbe5f7] text-xs"><i class="fa-solid fa-thumbs-up"></i>
             GOOD FIRST ISSUE</div>`;
+    } else {
+      return `<div class="badge badge-soft p-2 bg-[#fafcde] text-[#a9a600] border-[#f7f6bb] text-xs"><i class="fa-solid fa-file-invoice"></i>
+            DOCUMENTATION</div>`;
     }
   });
   const newArraayToString = newArraay.join(" ");
@@ -98,8 +103,8 @@ const showAllIssuCard = (datas) => {
                 </div>
              </div>
              <div class="space-y-3 ">
-              <h2 class="text-lg font-semibold">${title}</h2>
-              <p >${description}</p>
+              <h2 class="line-clamp-2 text-lg font-semibold">${title}</h2>
+              <p class="line-clamp-2 text-sm font-extralight">${description}</p>
               <div class="flex gap-1 space-y-1 flex-wrap">
                 ${showIssuesLabels(labels)}
               </div>
@@ -206,7 +211,7 @@ const showModalCard = (data) => {
             <div class=" p-4">
               <p class="text-lg font-bold">${title}</p>
               <div class="flex gap-2 mt-2">
-                <div class="badge badge-soft px-3 ${status == "open"?"bg-[#00A96E]":"bg-[#a855f7]"}">
+                <div class="badge badge-soft text-white px-3 ${status == "open"?"bg-[#00A96E]":"bg-[#a855f7]"}">
                 ${status.toUpperCase()}
               </div>
               <p class="text-sm font-extralight flex gap-2"><span>•</span>Opened by ${author}<span>•</span></p>
