@@ -183,6 +183,9 @@ const loadSearchIssues = async () => {
       icon: "warning",
       title: "Oops...",
       text: "Please write something in the search box.",
+      showConfirmButton: false,
+      timer: 1500,
+      width: '25%'
     });
     // alert(`"Please write something in the search box."`)
     return;
@@ -205,7 +208,10 @@ const massage = `${searchResult.length} Issues found!` //dynamic massage create 
 await Swal.fire({
   title: massage, 
   icon: "success",
-  draggable: true
+  draggable: true,
+  showConfirmButton: false,
+  timer: 1200,
+  width: '20%'
 });
 
   showAllIssuCard(alldatas);
