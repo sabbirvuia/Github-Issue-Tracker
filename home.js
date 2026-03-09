@@ -118,7 +118,7 @@ const showAllIssuCard = (datas) => {
 
     issuesContainer.append(div);
   });
-showIssuesNotFoundMassage()
+  showIssuesNotFoundMassage();
 };
 
 const showfilterIssues = (status) => {
@@ -146,7 +146,7 @@ const loadSearchIssues = async () => {
     const getBtn = document.getElementById(btn);
     getBtn.classList.remove("btn-primary");
   });
-// search value when emtey 
+  // search value when emtey
   if (searchValue.trim() === "") {
     document.getElementById("btn-all").classList.add("btn-primary");
     loadIssues();
@@ -166,42 +166,71 @@ const loadSearchIssues = async () => {
   spinnerTime(false);
 };
 
+const showModal = (id) => {
+  // console.log(id);
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+    .then((res) => res.json())
+    .then((object) => showModalCard(object.data));
+};
 
-
-const showModal = (id) =>{
-    // console.log(id);
-    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
-        .then (res => res.json())
-         .then (object => showModalCard(object.data) )
-}
-
-const showModalCard = (data) =>{
+const showModalCard = (data) => {
   // console.log(data)
-    const id = data.id;
-    const title = data.title;
-    const description = data.description;
-    const status = data.status;
-    const labels = data.labels;
-    const priority = data.priority;
-    const author = data.author;
-    const assignee = data.assignee;
-    const createdAt = data.createdAt;
-    const updatedAt = data.updatedAt;
+  // const id = data.id;
+  const title = data.title;
+  const description = data.description;
+  const status = data.status;
+  const labels = data.labels;
+  const priority = data.priority;
+  const author = data.author;
+  const assignee = data.assignee;
+  const createdAt = data.createdAt;
 
-    const modal = document.getElementById("modal")
-    
-    const modalContainer = document.getElementById("modal-container");
-    modalContainer.innerHTML = "";
 
-    const createElement = document.createElement('div') 
-          createElement.innerHTML =`
-          
-          loadding${id}
-          
+  const modal = document.getElementById("modal");
+
+  const modalContainer = document.getElementById("modal-container");
+  modalContainer.innerHTML = "";
+
+  const createElement = document.createElement("div");
+  createElement.innerHTML = `
+            <div class=" p-4">
+              <p class="text-lg font-bold">${title}</p>
+              <div class="flex gap-2 mt-2">
+                <div class="badge badge-soft px-3 ${status == "open"?"bg-[#00A96E]":"bg-[#a855f7]"}">
+                ${status.toUpperCase()}
+              </div>
+              <p class="text-sm font-extralight flex gap-2"><span>•</span>Opened by ${author}<span>•</span></p>
+              <p class="text-sm font-extralight">${new Date(createdAt).toLocaleDateString("en-US").replaceAll("/", "-")}</p>
+              </div>
+              <div class="labelBox flex mt-6 gap-2">
+                ${showIssuesLabels(labels)}
+              </div>
+              <p class="text-sm font-extralight space-y-0 my-6">${description}</p>
+              <div class="grid grid-cols-2 justify-start rounded-md bg-[#F8FAFC] p-4 items-center">
+                <div class="space-y-1">
+                  <p class="text-sm font-extralight">Assignee:</p>
+                  <p class="text-lg font-semibold">${assignee}</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-sm font-extralight">Priority:</p>
+                  <div class="badge badge-soft px-3 
+                ${
+                  priority == "high"
+                    ? "bg-[#FEECEC] text-[#EF4444]"
+                    : priority == "medium"
+                      ? "bg-[#FFF6D1] text-[#F59E0B]"
+                      : "bg-[#EEEFF2] text-[#9CA3AF]"
+                } 
+                ">
+                ${priority.toUpperCase()}
+                </div>
+                </div>
+              </div>
+            </div>
           `;
-    modalContainer.append(createElement)
-    modal.showModal();
-}
+  modalContainer.append(createElement);
+  modal.showModal();
+};
 
 const activeBtn = (id) => {
   btnIds.forEach((btn) => {
@@ -213,14 +242,13 @@ const activeBtn = (id) => {
   getBtn.classList.add("btn-primary");
 };
 
-const showIssuesNotFoundMassage = ()=> {
-  if (alldatas.length == 0){
+const showIssuesNotFoundMassage = () => {
+  if (alldatas.length == 0) {
     issuesContainer.innerHTML = `
     <p class="text-lg font-light text-error col-span-4 text-center">NO ISSUES FOUND! </p>
-    `
-  } 
-}
-
+    `;
+  }
+};
 
 const clock = document.getElementById("clock");
 
