@@ -175,9 +175,18 @@
 
       <div
         id="spinner"
-        class="justify-center text-center col-span-4 mt-5 "
+        class="justify-center text-center col-span-4 mt-5 hidden"
       >
       <p class="subtittle text-info inline-block"> Issues loading.... </p>
+        <span
+          class="loading loading-dot inline-block loading-sm text-info"
+        ></span>
+      </div>
+      <div
+        id="spinner-of-modal"
+        class="justify-center text-center col-span-4 mt-5 hidden"
+      >
+      <p class="subtittle text-info inline-block"> Issue details loading.... </p>
         <span
           class="loading loading-dot inline-block loading-sm text-info"
         ></span>
@@ -189,13 +198,10 @@
       >      
       </div>
     </section>
-
-    <!-- Open the modal using ID.showModal() method -->
-    <button class="btn" onclick="modal.showModal()">open modal</button>
     <dialog id="modal" class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
         <div id="modal-container">
-          
+
         </div>
         <div class="modal-action">
           <form method="dialog">

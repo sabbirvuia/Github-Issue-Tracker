@@ -53,6 +53,12 @@ const spinnerTime = (status) => {
   }
 };
 
+const spinnerTimeForModal = (status) =>{
+  const spinnerOfModal = document.getElementById("spinner-of-modal")
+  status === true
+  ?spinnerOfModal.classList.remove("hidden"):spinnerOfModal.classList.add("hidden")
+}
+
 const showAllIssuCard = (datas) => {
   issuesContainer.innerHTML = "";
 
@@ -166,11 +172,15 @@ const loadSearchIssues = async () => {
   spinnerTime(false);
 };
 
-const showModal = (id) => {
+const showModal = async (id) => {
   // console.log(id);
-  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
-    .then((res) => res.json())
-    .then((object) => showModalCard(object.data));
+spinnerTimeForModal(true);
+const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+const object = await res.json();
+const datas = object.data;
+  showModalCard(datas)
+  spinnerTimeForModal(false);
+  modal.showModal();
 };
 
 const showModalCard = (data) => {
@@ -229,7 +239,6 @@ const showModalCard = (data) => {
             </div>
           `;
   modalContainer.append(createElement);
-  modal.showModal();
 };
 
 const activeBtn = (id) => {
